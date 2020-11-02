@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <title>Session</title>
+    <style>
+        .user1 {
+            background-color: red;
+            color: white;
+        }
+
+        .user2 {
+            background-color: blue;
+            color: white;
+        }
+
+        #main_box {
+            text-align: center;
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        #chat_box {
+            width: 200px;
+            height: 200px;
+            overflow: scroll;
+            margin: 0 auto;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"
+        integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A=="
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <div id="main_box">
+        <div id="chat_box">
+        </div>
+        <form method="POST">
+            kodowanie
+            <input type="text" name="encryption" in="encrytp">
+            wiadomosc
+            <input type="text" name="chat_mess"> <button>send</button>
+            <div>{{error}}</div>
+            <div id="key">maslo123</div>
+        </form>
+    </div>
+    </div>
+    <script>
+        function encryption(mess, key) {
+
+            return CryptoJS.AES.encrypt(mess, key);
+        }
+        function decryption(mess_ecrypted, key) {
+            return CryptoJS.AES.decrypt(mess_ecrypted, key);
+        }
+
+        function send() {
+            var jqxhr = $.getJSON("/chat_check", function () {
+
+            })
+                .done(function (data) {
+                    $("#chat_box").html('');
+                    $.each(data, function () {
+                        if (this.user == 1) {
+                            class_to = 'class="user1"'
+                        }
+                        else {
+                            class_to = 'class="user2"'
+                        }
+                        // alert($("#key").text())
+
+                        // console.log(decryption())
+                        $("#chat_box").append("<p " + class_to + " > " + decryption(this.mess, $("#key").text()).toString(CryptoJS.enc.Utf8) + " </p>")
+                        if (this.mess == null) {
+                            console.log("null")
+                        }
+                        else {
+
+                            $("#chat_box").append("<p " + class_to + " > " + decryption(this.mess, $("#key").text()).toString(CryptoJS.enc.Utf8) + " </p>")
+                        }
+                    });
+
+
+                }
+                )
+                .fail(function () {
+                    console.log("error");
+                })
+
+            setTimeout(send, 1000);
+        }
+        $(document).ready(function () {
+            $("form").submit(function () {
+                // Let's find the input to check
+                var $input_mess = $(this).find("input[name=chat_mess]");
+                var $input_encryption = $(this).find("input[name=encryption]");
+                if (!$input_mess.val() || !$input_encryption.val()) {
+                    alert($input_mess.val())
+
+                } else {
+                    $input_mess.val(encryption($input_mess.val(), $input_encryption.val()).toString());
+                }
+            });
+            send();
+        });
+
+
+
+    </script>
+</body>
+
+</html>
