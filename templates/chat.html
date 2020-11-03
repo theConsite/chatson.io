@@ -72,15 +72,13 @@
                         else {
                             class_to = 'class="user2"'
                         }
-                        // alert($("#key").text())
-
-                        // console.log(decryption())
-                        $("#chat_box").append("<p " + class_to + " > " + decryption(this.mess, $("#key").text()).toString(CryptoJS.enc.Utf8) + " </p>")
+                        // console.log(decryption(this.mess, $("#key").text(CryptoJS.enc.Utf8)) )
+                        //  console.log(decryption(this.mess, $("#key").text()).toString(CryptoJS.enc.Utf8));
+                        // $("#chat_box").append("<p " + class_to + " > " + decryption(this.mess, $("#key").text()).toString(CryptoJS.enc.Utf8) + " </p>")
                         if (this.mess == null) {
                             console.log("null")
                         }
                         else {
-
                             $("#chat_box").append("<p " + class_to + " > " + decryption(this.mess, $("#key").text()).toString(CryptoJS.enc.Utf8) + " </p>")
                         }
                     });
@@ -98,12 +96,13 @@
             $("form").submit(function () {
                 // Let's find the input to check
                 var $input_mess = $(this).find("input[name=chat_mess]");
-                var $input_encryption = $(this).find("input[name=encryption]");
-                if (!$input_mess.val() || !$input_encryption.val()) {
-                    alert($input_mess.val())
+                var $input_encryption = $("#key").text();
+                if (!$input_mess.val() || !$input_encryption) {
+                    alert("wypełnij oba pola");
 
                 } else {
-                    $input_mess.val(encryption($input_mess.val(), $input_encryption.val()).toString());
+                    // alert(encryption($input_mess.val(), $input_encryption).toString(),$input_encryption,$input_mess.val())
+                    $input_mess.val(encryption($input_mess.val(), $input_encryption).toString());
                 }
             });
             send();
