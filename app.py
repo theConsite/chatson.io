@@ -35,14 +35,10 @@ def prepare_mess(messeges):
 def init():
     if request.method =="POST": 
         session["key"]=request.form.get("key_id")
-        if session["user"] == "2":
-            session["user"]="2"
-            print(session["user"])
-        else:
-            session["user"]="1"
-            print(session["user"])
+        session["user"]=request.form.get("user")
         session["mess_counter_current"]=1
         session["messgeges"]=[]
+        print(session["user"])
     return  render_template("enter.html")
 
 
