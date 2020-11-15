@@ -26,19 +26,17 @@
       <label for="1">user1</label><br />
       <input type="radio" id="user2" name="user" value="2" />
       <label for="2">user2</label><br />
+      Wprowadź swoje dane i kliknji
       <button id="button_send_data" type="button">Enter</button>
 
-      <a href="/chat"
-        ><button
-          type="submit"
-          class="g-recaptcha"
-          data-sitekey="6LerCeMZAAAAAB0sX5vziXTk6fayka2w9bEsMfkO"
-          data-callback="onSubmit"
-          data-action="submit"
-        >
-          przejdz do czatu
-        </button></a
+      <button
+        class="g-recaptcha"
+        data-sitekey="6LerCeMZAAAAAB0sX5vziXTk6fayka2w9bEsMfkO"
+        data-callback="onSubmit"
+        data-action="submit"
       >
+        przejdz do czatu
+      </button>
     </form>
     <script src="{{ url_for('static', filename='js/enter.js') }}"></script>
     <script>

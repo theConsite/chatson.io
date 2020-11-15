@@ -39,12 +39,12 @@ def prepare_mess(messeges):
 
 @app.route('/enter', methods=['GET', 'POST'])
 def init():
-    if request.method == "POST":
+    if request.method == "POST" and request.form.get("key_id") != "" and request.form.get("user") != None:
         session["key"] = request.form.get("key_id")
         session["user"] = request.form.get("user")
         session["mess_counter_current"] = 1
         session["messgeges"] = []
-        print(session["user"])
+        return render_template("chat.html")
     return render_template("enter.html")
 
 
