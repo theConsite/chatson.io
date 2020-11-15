@@ -44,7 +44,7 @@ def init():
         session["user"] = request.form.get("user")
         session["mess_counter_current"] = 1
         session["messgeges"] = []
-        return render_template("chat.html")
+        return redirect("/chat", code=302)
     return render_template("enter.html")
 
 
@@ -71,7 +71,7 @@ def sessions():
         # else:
         #     return render_template('enter.html')
     except:
-        return render_template('enter.html')
+        return redirect("/enter", code=302)
 
 
 @app.route('/chat_check', methods=['GET', 'POST'])
