@@ -37,6 +37,10 @@ def prepare_mess(messeges):
         session["messgeges"].append(dic_to_add)
 
 
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    return render_template("index.html")
+        
 @app.route('/enter', methods=['GET', 'POST'])
 def init():
     if request.method == "POST" and request.form.get("key_id") != "" and request.form.get("user") != None:
