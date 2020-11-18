@@ -39,6 +39,12 @@ def prepare_mess(messeges):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    if request.method == "POST" and request.form.get("key_id") != "" and request.form.get("user") != None:
+        session["key"] = request.form.get("key_id")
+        session["user"] = request.form.get("user")
+        session["mess_counter_current"] = 1
+        session["messgeges"] = []
+        return redirect("/chat", code=302)
     return render_template("index.html")
         
 @app.route('/enter', methods=['GET', 'POST'])
