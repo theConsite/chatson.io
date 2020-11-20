@@ -90,3 +90,8 @@ def check_chat():
         session["mess_counter_current"]))
     prepare_mess(messeges)
     return jsonify(session["messgeges"])
+
+@app.route('/chat_new', methods=['GET', 'POST'])
+def chat_new():
+    
+    return render_template('chat_new.html')

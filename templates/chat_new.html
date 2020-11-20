@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatson.io</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat_new.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/icon.png') }}">
+</head>
+
+<body>
+    <nav>
+        <div id="user">User X</div>
+        <div id="key">
+            <div id="hidden" class="blur">
+                <input type="text" placeholder="Enter Your Key">
+                <button>Send</button>
+            </div>
+            <button id="show" onclick="toggleBlur()">Show</button>
+        </div>
+    </nav>
+    <div id="chatSection">
+        <div id="chat">
+            <div id="chatWindow">
+                <p class="user1"><span>Lorem ipsum dolor sit amet.</span></p>
+                <p class="user2"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. rem ipsa.</span></p>
+            </div>
+            <input type="text" placeholder="Your Message"> 
+            <button>Send</button>
+        </div>
+        <div id="ad"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/chat_new.js') }}"></script>
+</body>
+
+</html>
