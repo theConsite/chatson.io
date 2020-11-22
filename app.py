@@ -1,7 +1,21 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
+from cryptography.fernet import Fernet
 import sqlite3
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'vnkdjnfjknfl1232#'
+message = 'John Doe'
+file = open("key.key", "rb")
+key = file.read()
+file.close()
+
+
+def encrypt(message, key: bytes) -> bytes:
+    message = message.encode()
+    return Fernet(key).encrypt(message)
+
+
+def decrypt(token, key: bytes) -> bytes:
+    return Fernet(key).decrypt(token).decode()
 
 
 def send_mess(user_number, chat, key, mess_counter_current):
@@ -46,7 +60,8 @@ def index():
         session["messgeges"] = []
         return redirect("/chat", code=302)
     return render_template("index.html")
-        
+
+
 @app.route('/enter', methods=['GET', 'POST'])
 def init():
     if request.method == "POST" and request.form.get("key_id") != "" and request.form.get("user") != None:
@@ -91,7 +106,8 @@ def check_chat():
     prepare_mess(messeges)
     return jsonify(session["messgeges"])
 
+
 @app.route('/chat_new', methods=['GET', 'POST'])
 def chat_new():
-    
+
     return render_template('chat_new.html')
