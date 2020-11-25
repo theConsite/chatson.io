@@ -57,9 +57,9 @@ nav img {
 
 header {
     text-align: center;
-    height: 100vh;
+    height: 90vh;
     background: linear-gradient(180deg, rgba(57, 147, 255, 1) 0%, rgba(115, 178, 255, 1) 73%, rgba(255, 255, 255, 1) 100%);
-    padding-top: 22vh;
+    padding-top: 15vh;
     color: white;
 }
 
@@ -111,7 +111,7 @@ header h1 {
 
 #scrollDown {
     position: absolute;
-    top: 75vh;
+    top: 70vh;
     left: calc(50vw - 73.5px);
 }
 
