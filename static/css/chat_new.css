@@ -36,6 +36,9 @@ nav> #user{
     filter: blur(5px);
     pointer-events: none;
 }
+#chatWindow::-webkit-scrollbar{
+        width: 0
+    }
 #key >div, #key> button{
     display: inline-block;
 }
@@ -61,12 +64,13 @@ nav> #user{
     margin: 0 auto;
     background: gray;
     width: 80vw;
+    max-width: 1000px;
     height: 200px;
 }
 #chat{
     margin: 100px auto 50px auto;
     width: 80vw;
-    height: calc(100vh - 400px);
+    height: calc(100vh - 300px);
 }
 #chat input{
     height: 40px;
@@ -92,6 +96,7 @@ nav> #user{
     border: 2px solid #3993ff;
     border-radius: 20px;
     padding: 10px;
+    overflow-y: scroll;
 }
 
 #chatWindow span{
@@ -115,6 +120,9 @@ nav> #user{
     #hidden input{
     width: 200px;
 }
+    nav{
+        padding-right: 20px;
+    }
   
 }
 

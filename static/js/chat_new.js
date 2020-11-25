@@ -8,3 +8,8 @@ function toggleBlur(){
     }
 }
 alert("Podgląd layoutu, niepodpięte pod flaska")
+function bottomDiv(){
+    var objDiv = document.getElementById("chatWindow");
+    objDiv.scrollTop = objDiv.scrollHeight; 
+}
+window.setInterval(bottomDiv,5000)
